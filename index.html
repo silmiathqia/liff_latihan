@@ -6,29 +6,43 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-            <style>
-                .table>thead>tr>th {
-                    padding: 60px;
-                }
-            </style>
-          
+        <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" type="text/css" href="css\style.css">
+        <title>Tahfizh List App</title>
+
       </head>
       <body>
 
-        <div class="header">
-          <h2 style="margin:5px">List Tahfizh Al-Qur'an</h2>
-          <input type="text" id="myInput" placeholder="Title...">
-          <span onclick="newElement()" class="addBtn">Add</span>
-        </div>
-        <ul id="myUL">
-          <li class="checked">Al-Fatihah</li>
-          <li>Al-Balad</li>
-          <li class="checked">Al-Falaq</li>
-          <li>An-Naba</li>
-          <li>Ab-Basa</li>
-        </ul>
-        <button type="button" id="clear-list" onclick="removeAll()">Clear Items</button>
+        <div class="container">
+              <p>
+                <label for="new-task">Add Surah</label><input id="new-task" type="text"><button>Add</button>
+              </p>
+
+              <h3>List Surah</h3>
+              <ul id="incomplete-tasks">
+                <li><input type="checkbox">
+                    <label>Al-Naba</label>
+                    <input type="text">
+                    <button class="edit">Edit</button>
+                    <button class="delete">Delete</button>
+                 </li>
+                <li class="editMode"><input type="checkbox">
+                    <label>Al-Balad</label>
+                    <input type="text" value="Al-Balad">
+                    <button class="edit">Edit</button>
+                    <button class="delete">Delete</button>
+                 </li>
+              </ul>
+              <h3>Completed Surah</h3>
+              <ul id="completed-tasks">
+                <li><input type="checkbox" checked>
+                    <label>Al-Fatihah</label>
+                    <input type="text">
+                    <button class="edit">Edit</button>
+                    <button class="delete">Delete</button>
+                 </li>
+              </ul>
+            </div>
         <script type="text/javascript" src="js\to do list.js"></script>
 
             <!--Konten LIFF v2-->
