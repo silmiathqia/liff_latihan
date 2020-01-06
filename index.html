@@ -7,59 +7,22 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
         <link rel="stylesheet" type="text/css" href="css\style.css">
-        <title>Tahfizh List App</title>
-
       </head>
       <body>
-<div class="wrapper">
-			<div class="main-container">
-			  <div class="top">
-				<div class="title">
-				 <h1 id="date">%date%</h1>
-				 <h2>You've got <span class="total__items">%items%</span> to do today!</h2>
-			   </div>
-			   <button class="add__btn">+</button>
-			 </div>
-			 <div class="bottom">
-			  <div class="add">
-				<div class="add__container">
-				  <input type="text" class="add__description" placeholder="What would you like to do today?">
-				</div>
-			  </div>
-			  <div class="container clearfix">
-				<div class="todos">
-				  <div class="todos">
-					<div class="todos__list">
-					  <div class="item" style="background:linear-gradient(to bottom, rgba(255,190,11, 1) 0%, rgba(255,190,11, 0.8) 100%)"> 
-						<div class="item__description">Walk the dog</div>
-						<div class="item__delete">
-						  <button class="item__delete--btn">
-							<i class="ion-ios-trash-outline"></i>
-						  </button>
-						</div>
-					  </div>
-					  <div class="item" style="background:linear-gradient(to bottom, rgba(255,0,110, 1) 0%, rgba(255,0,110, 0.8) 100%)"> 
-						<div class="item__description">Buy groceries</div>
-						<div class="item__delete"><button class="item__delete--btn">
-						  <i class="ion-ios-trash-outline"></i>
-						</button>
-					  </div>
-					</div>
-					<div class="item" style="background:linear-gradient(to bottom, rgba(131, 56, 236, 1) 0%, rgba(131, 56, 236, 0.8) 100%)"> 
-					  <div class="item__description">Book a doctor's appointment</div>
-					  <div class="item__delete">
-						<button class="item__delete--btn">
-						  <i class="ion-ios-trash-outline"></i>
-						</button>
-					  </div>
-					</div>
-				  </div>
-				</div>
-			  </div>
-			</div>
-		  </div>
-	</div>
-  </div>
+	<div class="header">
+		<h2 style="margin:5px">List Tahfizh Al-Qur'an</h2>
+        	<input type="text" id="myInput" placeholder="Title...">
+         	<span onclick="newElement()" class="addBtn">Add</span>
+        </div>
+		<ul id="myUL">
+		  <li class="checked">Al-Fatihah</li>
+		  <li>Al-Balad</li>
+		  <li class="checked">Al-Falaq</li>
+		  <li>An-Naba</li>
+		  <li>Ab-Basa</li>
+		</ul>
+        <button type="button" id="clear-list" onclick="removeAll()">Clear Items</button>
+        <script type="text/javascript" src="js\to do list.js"></script>
 	     
         <!--Konten LIFF v2-->
  
@@ -131,12 +94,8 @@
         <div id="nodeLiffIdErrorMessage" class="hidden">
             <p>Unable to receive the LIFF ID as an environment variable.</p>
         </div>
-          
-
-           
 
       </body>
       <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
       <script src="js\liff-starter.js"></script>
-      <script type="text/javascript" src="js\to do list.js"></script>
     </html>
