@@ -1,162 +1,126 @@
-var taskInput=document.getElementById("new-task");//Add a new task.
-var addButton=document.getElementsByTagName("button")[0];//first button
-var incompleteTaskHolder=document.getElementById("incomplete-tasks");//ul of #incomplete-tasks
-var completedTasksHolder=document.getElementById("completed-tasks");//completed-tasks
+$(document).ready(function(){
+  var check_count = 0,
+      total = 0;
+  
+  //Custom Functions
+  function updateText(){
+    $('#count').text(total);
+    $('#count_done').text(check_count);
+    $('#remaining_done').text(total-check_count);
+  }
+  function showDate(){
+    var suffix = "", date = new Date(), dayOfMonth = date.getDate(), dayOfWeek = date.getDay(), Month = date.getMonth(),
+        $today =  $('#today'),
+        $daymonth =  $('#daymonth'),
+        $month =  $('#month');
 
+    var dayArray = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+    var monthArray = ["January","February","March","April,","May","June","July","August","September","October","November","December"];
+    
+    switch(dayOfMonth) {
+        case 1: case 21: case 31: suffix = 'st'; break;
+        case 2: case 22:          suffix = 'nd'; break;
+        case 3: case 23:          suffix = 'rd'; break;
+        default:                  suffix = 'th';
+    }
+    
+    $today.text(dayArray[dayOfWeek] + ",");
+    $daymonth.text(" " + dayOfMonth + suffix);
+    $month.text(monthArray[Month]);
+  }
+  // Get the total number of "li's" and checked "li's"  
+  function loadLi(){
+    var findTheMarkedList = $('ul li');
+    for (var i = 0; i < findTheMarkedList.length; i++)
+    {
+      total++;
+      if ($(findTheMarkedList[i]).find('i').hasClass('fa-check-circle mark'))
+      {
+        $('li .right').eq(i).find('p').addClass('line-through').attr("contentEditable", false);
+        check_count++;
+      }
+    }
+    updateText();
+  }
+  
+  $('ul li').each(function(j){
+      var $this = $(this);
+      $('.bottom').addClass('show');
+      setTimeout(function () {
+        $this.addClass('down_in').removeClass('lihiden');
+         setTimeout(function () {
+            $this.removeAttr('class');
+         }, 550);
+      }, 60 * j );
+    });
+  
+  // Click on button function add new item to list
+  var li = "<li><a href='' class='check_button' onmousedown='return false'><i class='fa fa-circle-thin' aria-hidden='true'></i></a><div class='right'><p contenteditable='true'><strong></strong></p></div><span class='delete_button' onmousedown='return false'><i class='fa fa-times-circle' aria-hidden='true'></i></span></li>";
+  
+  $('.bottom #add-new').click(function(e){
+    e.preventDefault();
+    
+    $('ul').append(li).find('li:last-child').addClass('down');
+    
+    total += 1;
+    $('li:last-child p').text('New Task');
 
-//New task list item
-var createNewTaskElement=function(taskString){
-
-	var listItem=document.createElement("li");
-
-	//input (checkbox)
-	var checkBox=document.createElement("input");//checkbx
-	//label
-	var label=document.createElement("label");//label
-	//input (text)
-	var editInput=document.createElement("input");//text
-	//button.edit
-	var editButton=document.createElement("button");//edit button
-
-	//button.delete
-	var deleteButton=document.createElement("button");//delete button
-
-	label.innerText=taskString;
-
-	//Each elements, needs appending
-	checkBox.type="checkbox";
-	editInput.type="text";
-
-	editButton.innerText="Edit";//innerText encodes special characters, HTML does not.
-	editButton.className="edit";
-	deleteButton.innerText="Delete";
-	deleteButton.className="delete";
-
-
-
-	//and appending.
-	listItem.appendChild(checkBox);
-	listItem.appendChild(label);
-	listItem.appendChild(editInput);
-	listItem.appendChild(editButton);
-	listItem.appendChild(deleteButton);
-	return listItem;
-}
-
-
-
-var addTask=function(){
-	console.log("Add Task...");
-	//Create a new list item with the text from the #new-task:
-	var listItem=createNewTaskElement(taskInput.value);
-
-	//Append listItem to incompleteTaskHolder
-	incompleteTaskHolder.appendChild(listItem);
-	bindTaskEvents(listItem, taskCompleted);
-
-	taskInput.value="";
-
-}
-
-//Edit an existing task.
-
-var editTask=function(){
-console.log("Edit Task...");
-console.log("Change 'edit' to 'save'");
-
-
-var listItem=this.parentNode;
-
-var editInput=listItem.querySelector('input[type=text]');
-var label=listItem.querySelector("label");
-var containsClass=listItem.classList.contains("editMode");
-		//If class of the parent is .editmode
-		if(containsClass){
-
-		//switch to .editmode
-		//label becomes the inputs value.
-			label.innerText=editInput.value;
-		}else{
-			editInput.value=label.innerText;
-		}
-
-		//toggle .editmode on the parent.
-		listItem.classList.toggle("editMode");
-}
-
-
-
-
-//Delete task.
-var deleteTask=function(){
-		console.log("Delete Task...");
-
-		var listItem=this.parentNode;
-		var ul=listItem.parentNode;
-		//Remove the parent list item from the ul.
-		ul.removeChild(listItem);
-
-}
-
-
-//Mark task completed
-var taskCompleted=function(){
-		console.log("Complete Task...");
-	
-	//Append the task list item to the #completed-tasks
-	var listItem=this.parentNode;
-	completedTasksHolder.appendChild(listItem);
-				bindTaskEvents(listItem, taskIncomplete);
-
-}
-
-
-var taskIncomplete=function(){
-		console.log("Incomplete Task...");
-//Mark task as incomplete.
-		var listItem=this.parentNode;
-	incompleteTaskHolder.appendChild(listItem);
-			bindTaskEvents(listItem,taskCompleted);
-}
-
-
-
-var ajaxRequest=function(){
-	console.log("AJAX Request");
-}
-
-
-//Set addTask function.
-addButton.onclick=addTask;
-addButton.addEventListener("click",addTask);
-addButton.addEventListener("click",ajaxRequest);
-
-
-var bindTaskEvents=function(taskListItem,checkBoxEventHandler){
-	console.log("bind list item events");
-//select ListItems children
-	var checkBox=taskListItem.querySelector("input[type=checkbox]");
-	var editButton=taskListItem.querySelector("button.edit");
-	var deleteButton=taskListItem.querySelector("button.delete");
-
-
-			//Bind editTask to edit button.
-			editButton.onclick=editTask;
-			//Bind deleteTask to delete button.
-			deleteButton.onclick=deleteTask;
-			//Bind taskCompleted to checkBoxEventHandler.
-			checkBox.onchange=checkBoxEventHandler;
-}
-
-//incompleteTaskHolder ul list items
-	for (var i=0; i<incompleteTaskHolder.children.length;i++){
-		bindTaskEvents(incompleteTaskHolder.children[i],taskCompleted);
-	}
-
-
-
-    for (var i=0; i<completedTasksHolder.children.length;i++){
-		bindTaskEvents(completedTasksHolder.children[i],taskIncomplete);
-	}
-
-
+    updateText();
+  });
+  // Click on button function list
+  $('.app ul').on('click','li .check_button',function(e){
+    e.preventDefault();
+    
+    let button = $(this).find('i');
+    let checked = 'fa fa-check-circle mark';
+    let unchecked = 'fa fa-circle-thin';
+    
+    // Save the current index of button after the click event in the "left" div.
+    let index_click = $('li .check_button').index(this);
+    // Use the current index of button to target the correct "li p" in the "right" div.
+    let linethrough_text = $('li .right').eq(index_click).find('p');
+    
+    if(button.hasClass(unchecked))
+    {
+      linethrough_text.addClass('line-through').attr("contentEditable", false);
+      button.removeClass(unchecked + ' mark-alt').addClass('pop_in').addClass(checked);
+      check_count += 1;
+    }
+    else
+    {    
+      linethrough_text.removeClass('line-through').attr('contentEditable', true);
+      button.removeClass(checked).removeClass('pop_in').addClass(unchecked + ' mark-alt');
+      check_count -= 1;
+    }
+    
+    updateText();
+  });
+  // Click on button function and delete 'li'
+  $('.app ul').on('click','li .delete_button',function(e){
+    e.preventDefault();
+    let index_click = $('li .delete_button').index(this);
+    let current = $('li').eq(index_click);
+    let button = $('.check_button').find('i');
+    
+    $(this).prop("disabled", true);
+    total -= 1;
+    
+    if(button.eq(index_click).hasClass('mark'))
+    {
+      check_count -= 1;
+    }
+    
+    current.addClass('up');
+    setTimeout(function () 
+    {
+      current.remove();  
+    }, 560); 
+    
+    $('#undo').removeClass('pop_out').addClass('pop_in').prop('disabled', false);
+    
+    updateText();
+  });
+  
+  showDate();
+  loadLi();
+});
