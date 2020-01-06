@@ -1,11 +1,14 @@
 body {
   background: #fff;
   color: #333;
+  margin: 10px auto;
+  min-width: 250px;
+  max-width: 50%;
   font-family: Lato, sans-serif;
 }
 .container {
   display: block;
-  width: 600px;
+  width: 400px;
   margin: 100px auto 0;
 }
 ul {
