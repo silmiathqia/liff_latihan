@@ -11,131 +11,58 @@
 
       </head>
       <body>
-
-        <div class="wrapper">
-              <div class="align">
-              <div class="app">
-                <div class="info">
-                  <div class="date">
-                    <p id="day"><span id="today">Sunday,</span><span id="daymonth"> 30th</span></p>
-                    <p id='month'>January</p>
-                  </div>
-                  <div class="info-bottom">
-                    <div class="left">
-                      <p id="count">7</p>
-                      <p id="tasks">Total</p>
-                    </div>
-                    <div class="middle">
-                      <p id="remaining_done">5</p>
-                      <p id="remaining_tasks">Remaining</p>
-                    </div>
-                    <div class="right">
-                      <p id="count_done">2</p>
-                      <p id="tasks_done">Done</p>
-                    </div>
-                  </div>
-                </div>
-
-                <ul>
-                  <p id="today2"><strong>Tahfizh</strong> Surah for today</p>
-                  <li class="lihiden">
-                    <a href="" class="check_button" onmousedown="return false">
-                      <i class="fa fa-check-circle mark" aria-hidden="true"></i>
-                    </a>
-                    <div class="right">
-                      <p contenteditable="true">At-thariq</p>
-                    </div>
-                    <span class="delete_button" onmousedown='return false'>
-                      <i class="fa fa-times-circle" aria-hidden="true"></i>
-                    </span>
-                  </li>
-
-                  <li class="lihiden">
-                    <a href="" class="check_button" onmousedown="return false">
-                      <i class="fa fa-circle-thin" aria-hidden="true"></i>
-                    </a>
-                    <div class="right">
-                      <p contenteditable="true">An-Naba'</p>
-                    </div>
-                    <span class="delete_button" onmousedown='return false'>
-                     <i class="fa fa-times-circle" aria-hidden="true"></i>
-                    </span>
-                  </li>
-
-                  <li class="lihiden">
-                    <a href="" class="check_button" onmousedown="return false">
-                      <i class="fa fa-circle-thin" aria-hidden="true"></i>
-                    </a>
-                    <div class="right">
-                      <p contenteditable="true">Al-Infitar</p>
-                    </div>
-                    <span class="delete_button" onmousedown='return false'>
-                     <i class="fa fa-times-circle" aria-hidden="true"></i>
-                    </span>
-                  </li>
-
-                  <li class="lihiden">
-                    <a href="" class="check_button" onmousedown="return false">
-                      <i class="fa fa-check-circle mark" aria-hidden="true"></i>
-                    </a>
-                    <div class="right">
-                      <p contenteditable="true">At-Takwir</p>
-                    </div>
-                    <span class="delete_button" onmousedown='return false'>
-                     <i class="fa fa-times-circle" aria-hidden="true"></i>
-                    </span>
-                  </li>
-
-                  <li class="lihiden">
-                    <a href="" class="check_button" onmousedown="return false">
-                      <i class="fa fa-circle-thin" aria-hidden="true"></i>
-                    </a>
-                    <div class="right">
-                      <p contenteditable="true">Al-A'la</p>
-                    </div>
-                    <span class="delete_button" onmousedown='return false'>
-                     <i class="fa fa-times-circle" aria-hidden="true"></i>
-                    </span> 
-                  </li>
-
-                  <li class="lihiden">
-                    <a href="" class="check_button" onmousedown="return false">
-                      <i class="fa fa-circle-thin" aria-hidden="true"></i>
-                    </a>
-                    <div class="right">
-                      <p contenteditable="true">Al-Ghasyiyah</p>
-                    </div>
-                    <span class="delete_button" onmousedown='return false'>
-                     <i class="fa fa-times-circle" aria-hidden="true"></i>
-                    </span>
-                  </li>
-
-                  <li class="lihiden">
-                    <a href="" class="check_button" onmousedown="return false">
-                      <i class="fa fa-circle-thin" aria-hidden="true"></i>
-                    </a>
-                    <div class="right">
-                      <p contenteditable="true">Al-Fajr</p>
-                    </div>
-                    <span class="delete_button" onmousedown='return false'>
-                     <i class="fa fa-times-circle" aria-hidden="true"></i>
-                    </span>
-                  </li>
-
-                </ul>
-
-                <div class="bottom">
-                  <a href="" id="add-new" onmousedown="return false">
-                    <i class="fa fa-plus" aria-hidden="true"></i>
-                    Add new surah
-                  </a>
-                </div>
-
-              </div>
-
-              </div>
-            </div>
-        <script type="text/javascript" src="js\to do list.js"></script>
+<div class="wrapper">
+			<div class="main-container">
+			  <div class="top">
+				<div class="title">
+				 <h1 id="date">%date%</h1>
+				 <h2>You've got <span class="total__items">%items%</span> to do today!</h2>
+			   </div>
+			   <button class="add__btn">+</button>
+			 </div>
+			 <div class="bottom">
+			  <div class="add">
+				<div class="add__container">
+				  <input type="text" class="add__description" placeholder="What would you like to do today?">
+				</div>
+			  </div>
+			  <div class="container clearfix">
+				<div class="todos">
+				  <div class="todos">
+					<div class="todos__list">
+					  <div class="item" style="background:linear-gradient(to bottom, rgba(255,190,11, 1) 0%, rgba(255,190,11, 0.8) 100%)"> 
+						<div class="item__description">Walk the dog</div>
+						<div class="item__delete">
+						  <button class="item__delete--btn">
+							<i class="ion-ios-trash-outline"></i>
+						  </button>
+						</div>
+					  </div>
+					  <div class="item" style="background:linear-gradient(to bottom, rgba(255,0,110, 1) 0%, rgba(255,0,110, 0.8) 100%)"> 
+						<div class="item__description">Buy groceries</div>
+						<div class="item__delete"><button class="item__delete--btn">
+						  <i class="ion-ios-trash-outline"></i>
+						</button>
+					  </div>
+					</div>
+					<div class="item" style="background:linear-gradient(to bottom, rgba(131, 56, 236, 1) 0%, rgba(131, 56, 236, 0.8) 100%)"> 
+					  <div class="item__description">Book a doctor's appointment</div>
+					  <div class="item__delete">
+						<button class="item__delete--btn">
+						  <i class="ion-ios-trash-outline"></i>
+						</button>
+					  </div>
+					</div>
+				  </div>
+				</div>
+			  </div>
+			</div>
+		  </div>
+		</div>
+  </div>
+        
+          
+          
 
             <!--Konten LIFF v2-->
      
@@ -211,4 +138,5 @@
       </body>
       <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
       <script src="js\liff-starter.js"></script>
+      <script type="text/javascript" src="js\to do list.js"></script>
     </html>
